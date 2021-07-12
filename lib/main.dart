@@ -246,6 +246,8 @@ class _MyHomePageState extends State<MyHomePage> {
           print(dat[i][1]);
           rows.add(row);
         }
+
+
         String latt = pinLocation.latitude.toString();
         String longg = pinLocation.longitude.toString();
         String altt = pinLocation.altitude.toString();
@@ -485,12 +487,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-
-    cron.schedule(new Schedule.parse('*/5 * * * *'), () async {
-      backup();
-    });
-    check_type();
-    timer = Timer.periodic(Duration(minutes: 1), (Timer t) => backup());
+//**********Idiocy****************************************************
+    // cron.schedule(new Schedule.parse('*/5 * * * *'), () async {
+    //   backup();
+    // });
+    // check_type();
+    // timer = Timer.periodic(Duration(minutes: 1), (Timer t) => backup());
+    //**********Idiocy****************************************************
     getPermission();
     super.initState();
     _streamSubscriptions.add(gyroscopeEvents.listen((GyroscopeEvent event) {
@@ -1404,8 +1407,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         .transform(utf8.decoder)
                         .transform(
                       CsvToListConverter(),
-                    )
-                        .toList();
+                    ).toList();
 
                     List<List<dynamic>> rows = [];
 
@@ -1456,6 +1458,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     //String fullPath = tempDir.path + "/boo2.pdf'";
 
                     String fullPath = "$path/Sensor_Data1.csv";
+                    String fullPath2 = "$path/Sensor_Data2.csv";
 
                     print('full path ${fullPath}');
 
@@ -1468,75 +1471,92 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
                     //*************Formula***************************************************
-                    var f = await File(fullPath);
-                    final csvFile = new File(fullPath)
-                        .openRead();
+                    var f = new File(fullPath).openRead();
+                    var csvFile = await File(fullPath2);
 
-                    var dat = await csvFile
+                    var dat = await f
                         .transform(utf8.decoder)
                         .transform(
                       CsvToListConverter(),
-                    )
-                        .toList();
+                    ).toList();
 
                     List<List<dynamic>> rows = [];
 
-                    List<dynamic> row = [];
-                    for (int i = 0; i < dat.length; i++) {
+                    for (int i = 0; i < ((dat[0].length)/12).round(); i++) {
                       if(i==0) {
-                        List<dynamic> row = [];
-                        row.add('uname');
-                        row.add('date');
-                        row.add('time');
-                        row.add('lat');
-                        row.add('long');
-                        row.add('altituide');
-                        row.add('velocity');
-                        row.add('ax');
-                        row.add('ay');
-                        row.add('az');
-                        row.add('gx');
-                        row.add('gy');
-                        row.add('gz');
-
-                        rows.add(row);
+                        List<dynamic> rower = [];
+                          rower.add('uname');
+                          rower.add('date');
+                          rower.add('time');
+                          rower.add('lat');
+                          rower.add('long');
+                          rower.add('altituide');
+                          rower.add('velocity');
+                          rower.add('ax');
+                          rower.add('ay');
+                          rower.add('az');
+                          rower.add('gx');
+                          rower.add('gy');
+                          rower.add('gz');
+                        rows.add(rower);
                       }
-                      else
+                      else if(i>0 && i!=((dat[0].length)/12).round()-1)
                         {
-                          if ('${dat[i][0]}'=='' || '${dat[i][1]}'=='' || '${dat[i][2]}'=='' || '${dat[i][3]}'=='' || '${dat[i][4]}'=='' || '${dat[i][5]}'=='' || '${dat[i][6]}'=='' || '${dat[i][7]}'=='' || '${dat[i][8]}'=='' || '${dat[i][9]}'=='' || '${dat[i][10]}'=='' || '${dat[i][11]}'=='' || '${dat[i][12]}'=='')
-                            {
-                              //Stop Disturbing me!!!
-                            }
-                          else
-                            {
-                              List<dynamic> row = [];
-                              row.add(dat[i][0]);
-                              row.add(dat[i][1]);
-                              row.add(dat[i][2]);
-                              row.add(dat[i][3]);
-                              row.add(dat[i][4]);
-                              row.add(dat[i][5]);
-                              row.add(dat[i][6]);
-                              row.add(dat[i][7]);
-                              row.add(dat[i][8]);
-                              row.add(dat[i][9]);
-                              row.add(dat[i][10]);
-                              row.add(dat[i][11]);
-                              row.add(dat[i][12]);
+                            List<dynamic> rower = [];
+                            var eta=dat[0][12*(i-1)+12];
+                            LineSplitter ls = new LineSplitter();
+                            List<String> eta_lines = ls.convert(eta);
 
-                              rows.add(row);
-
+                            if (eta_lines[1]!='' || dat[0][12*i + 1]!='' || dat[0][12*i + 2]!='' || dat[0][12*i + 3]!='' || dat[0][12*i + 4]!='' || dat[0][12*i + 5]!='' || dat[0][12*i + 6]!='' || dat[0][12*i + 7]!='' || dat[0][12*i + 9]!='' || dat[0][12*i + 10]!='' || dat[0][12*i + 11]!='') {
+                              rower.add(eta_lines[1]);
+                              rower.add(dat[0][12 * i + 1]);
+                              rower.add(dat[0][12 * i + 2]);
+                              rower.add(dat[0][12 * i + 3]);
+                              rower.add(dat[0][12 * i + 4]);
+                              rower.add(dat[0][12 * i + 5]);
+                              rower.add(dat[0][12 * i + 6]);
+                              rower.add(dat[0][12 * i + 7]);
+                              rower.add(dat[0][12 * i + 8]);
+                              rower.add(dat[0][12 * i + 9]);
+                              rower.add(dat[0][12 * i + 10]);
+                              rower.add(dat[0][12 * i + 11]);
+                              List _mas = dat[0][12 * i + 12].split("\n");
+                              rower.add('${_mas[0]}');
+                              rows.add(rower);
                             }
+
                         }
+                      else if(i>0 && i==((dat[0].length)/12).round()-1)
+                      {
+                        List<dynamic> rower = [];
+                        var eta=dat[0][12*(i-1)+12];
+                        LineSplitter ls = new LineSplitter();
+                        List<String> eta_lines = ls.convert(eta);
+
+                        if (eta_lines[1]!='' || dat[0][12*i + 1]!='' || dat[0][12*i + 2]!='' || dat[0][12*i + 3]!='' || dat[0][12*i + 4]!='' || dat[0][12*i + 5]!='' || dat[0][12*i + 6]!='' || dat[0][12*i + 7]!='' || dat[0][12*i + 9]!='' || dat[0][12*i + 10]!='' || dat[0][12*i + 11]!='') {
+                          rower.add(eta_lines[1]);
+                          rower.add(dat[0][12 * i + 1]);
+                          rower.add(dat[0][12 * i + 2]);
+                          rower.add(dat[0][12 * i + 3]);
+                          rower.add(dat[0][12 * i + 4]);
+                          rower.add(dat[0][12 * i + 5]);
+                          rower.add(dat[0][12 * i + 6]);
+                          rower.add(dat[0][12 * i + 7]);
+                          rower.add(dat[0][12 * i + 8]);
+                          rower.add(dat[0][12 * i + 9]);
+                          rower.add(dat[0][12 * i + 10]);
+                          rower.add(dat[0][12 * i + 11]);
+                          rower.add(dat[0][12 * i + 12]);
+                          rows.add(rower);
+                        }
+
+                      }
+
                     }
                     String csver = const ListToCsvConverter().convert(rows);
-                    f.writeAsString(csver);
-
+                    csvFile.writeAsString(csver);
                     //*************Formula***************************************************
-
-
-
-                    gps_data_upload(fullPath);
+                    gps_data_upload(fullPath2);
 
                   } else if (value == '/logout') {
                     Navigator.push(context,
@@ -2060,7 +2080,7 @@ Future<void> gps_data_upload(path) async {
   print(
       '********************************************************************************************');
   if (response.statusCode == 200) {
-    deleteFile();
+    // deleteFile();
   }
 }
 
