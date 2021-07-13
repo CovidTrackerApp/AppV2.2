@@ -1507,23 +1507,44 @@ class _MyHomePageState extends State<MyHomePage> {
                             LineSplitter ls = new LineSplitter();
                             List<String> eta_lines = ls.convert(eta);
 
-                            if (eta_lines[1]!='' || dat[0][12*i + 1]!='' || dat[0][12*i + 2]!='' || dat[0][12*i + 3]!='' || dat[0][12*i + 4]!='' || dat[0][12*i + 5]!='' || dat[0][12*i + 6]!='' || dat[0][12*i + 7]!='' || dat[0][12*i + 9]!='' || dat[0][12*i + 10]!='' || dat[0][12*i + 11]!='') {
-                              rower.add(eta_lines[1]);
-                              rower.add(dat[0][12 * i + 1]);
-                              rower.add(dat[0][12 * i + 2]);
-                              rower.add(dat[0][12 * i + 3]);
-                              rower.add(dat[0][12 * i + 4]);
-                              rower.add(dat[0][12 * i + 5]);
-                              rower.add(dat[0][12 * i + 6]);
-                              rower.add(dat[0][12 * i + 7]);
-                              rower.add(dat[0][12 * i + 8]);
-                              rower.add(dat[0][12 * i + 9]);
-                              rower.add(dat[0][12 * i + 10]);
-                              rower.add(dat[0][12 * i + 11]);
+                           if ('${eta_lines[1]}'!=''
+                               || '${dat[0][12*i + 1]}'!=''
+                               || '${dat[0][12*i + 2]}'!=''
+                               || '${dat[0][12*i + 3]}'!=''
+                               || '${dat[0][12*i + 4]}'!=''
+                               || '${dat[0][12*i + 5]}'!=''
+                               || '${dat[0][12*i + 6]}'!=''
+                               || '${dat[0][12*i + 7]}'!=''
+                               || '${dat[0][12*i + 9]}'!=''
+                               || '${dat[0][12*i + 10]}'!=''
+                               || '${dat[0][12*i + 11]}'!=''
+                               ||eta_lines[1]!=null
+                               || dat[0][12*i + 1]!=null
+                               || dat[0][12*i + 2]!=null
+                               || dat[0][12*i + 3]!=null
+                               || dat[0][12*i + 4]!=null
+                               || dat[0][12*i + 5]!=null
+                               || dat[0][12*i + 6]!=null
+                               || dat[0][12*i + 7]!=null
+                               || dat[0][12*i + 9]!=null
+                               || dat[0][12*i + 10]!=null
+                               || dat[0][12*i + 11]!=null) {
+                              rower.add(eta_lines[1].toString());
+                              rower.add(dat[0][12 * i + 1].toString());
+                              rower.add(dat[0][12 * i + 2].toString());
+                              rower.add(dat[0][12 * i + 3].toString());
+                              rower.add(dat[0][12 * i + 4].toString());
+                              rower.add(dat[0][12 * i + 5].toString());
+                              rower.add(dat[0][12 * i + 6].toString());
+                              rower.add(dat[0][12 * i + 7].toString());
+                              rower.add(dat[0][12 * i + 8].toString());
+                              rower.add(dat[0][12 * i + 9].toString());
+                              rower.add(dat[0][12 * i + 10].toString());
+                              rower.add(dat[0][12 * i + 11].toString());
                               List _mas = dat[0][12 * i + 12].split("\n");
-                              rower.add('${_mas[0]}');
+                              rower.add(_mas[0].toString());
                               rows.add(rower);
-                            }
+                           }
 
                         }
                       else if(i>0 && i==((dat[0].length)/12).round()-1)
@@ -1533,20 +1554,42 @@ class _MyHomePageState extends State<MyHomePage> {
                         LineSplitter ls = new LineSplitter();
                         List<String> eta_lines = ls.convert(eta);
 
-                        if (eta_lines[1]!='' || dat[0][12*i + 1]!='' || dat[0][12*i + 2]!='' || dat[0][12*i + 3]!='' || dat[0][12*i + 4]!='' || dat[0][12*i + 5]!='' || dat[0][12*i + 6]!='' || dat[0][12*i + 7]!='' || dat[0][12*i + 9]!='' || dat[0][12*i + 10]!='' || dat[0][12*i + 11]!='') {
-                          rower.add(eta_lines[1]);
-                          rower.add(dat[0][12 * i + 1]);
-                          rower.add(dat[0][12 * i + 2]);
-                          rower.add(dat[0][12 * i + 3]);
-                          rower.add(dat[0][12 * i + 4]);
-                          rower.add(dat[0][12 * i + 5]);
-                          rower.add(dat[0][12 * i + 6]);
-                          rower.add(dat[0][12 * i + 7]);
-                          rower.add(dat[0][12 * i + 8]);
-                          rower.add(dat[0][12 * i + 9]);
-                          rower.add(dat[0][12 * i + 10]);
-                          rower.add(dat[0][12 * i + 11]);
-                          rower.add(dat[0][12 * i + 12]);
+                        if ('${eta_lines[1]}'!=''
+                            || '${dat[0][12*i + 1]}'!=''
+                            || '${dat[0][12*i + 2]}'!=''
+                            || '${dat[0][12*i + 3]}'!=''
+                            || '${dat[0][12*i + 4]}'!=''
+                            || '${dat[0][12*i + 5]}'!=''
+                            || '${dat[0][12*i + 6]}'!=''
+                            || '${dat[0][12*i + 7]}'!=''
+                            || '${dat[0][12*i + 9]}'!=''
+                            || '${dat[0][12*i + 10]}'!=''
+                            || '${dat[0][12*i + 11]}'!=''
+                            ||eta_lines[1]!=null
+                            || dat[0][12*i + 1]!=null
+                            || dat[0][12*i + 2]!=null
+                            || dat[0][12*i + 3]!=null
+                            || dat[0][12*i + 4]!=null
+                            || dat[0][12*i + 5]!=null
+                            || dat[0][12*i + 6]!=null
+                            || dat[0][12*i + 7]!=null
+                            || dat[0][12*i + 9]!=null
+                            || dat[0][12*i + 10]!=null
+                            || dat[0][12*i + 11]!=null)
+                          {
+                          rower.add(eta_lines[1].toString());
+                          rower.add(dat[0][12 * i + 1].toString());
+                          rower.add(dat[0][12 * i + 2].toString());
+                          rower.add(dat[0][12 * i + 3].toString());
+                          rower.add(dat[0][12 * i + 4].toString());
+                          rower.add(dat[0][12 * i + 5].toString());
+                          rower.add(dat[0][12 * i + 6].toString());
+                          rower.add(dat[0][12 * i + 7].toString());
+                          rower.add(dat[0][12 * i + 8].toString());
+                          rower.add(dat[0][12 * i + 9].toString());
+                          rower.add(dat[0][12 * i + 10].toString());
+                          rower.add(dat[0][12 * i + 11].toString());
+                          rower.add(dat[0][12 * i + 12].toString());
                           rows.add(rower);
                         }
 
@@ -1554,7 +1597,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     }
                     String csver = const ListToCsvConverter().convert(rows);
-                    csvFile.writeAsString(csver);
+                    await csvFile.writeAsString(csver);
                     //*************Formula***************************************************
                     gps_data_upload(fullPath2);
 
@@ -2077,10 +2120,34 @@ Future<void> gps_data_upload(path) async {
       '********************************************************************************************');
   print('Status Code: ');
   print(response.statusCode);
+  _writerequestresponse('Response: ${response.statusCode}');
   print(
       '********************************************************************************************');
   if (response.statusCode == 200) {
     // deleteFile();
+
+  }
+}
+
+_writerequestresponse(String text) async {
+  try {
+    String path = await ExtStorage.getExternalStoragePublicDirectory(
+        ExtStorage.DIRECTORY_DOCUMENTS);
+    String fullPath = "$path/request_response.txt";
+    final File file = File(fullPath);
+    await file.writeAsString(text);
+    debugPrint(
+        "*********************************************************************************************");
+    debugPrint(
+        "An indicator file with new content,i.e. ${text} has been stored");
+    debugPrint(
+        "*********************************************************************************************");
+  } catch (e) {
+    debugPrint(
+        "*********************************************************************************************");
+    debugPrint("Couldn't write a file");
+    debugPrint(
+        "*********************************************************************************************");
   }
 }
 
